@@ -22,15 +22,6 @@
             android:orientation="vertical"
             android:background="@color/colorAccent">
 
-            <ImageView
-                android:id="@+id/detailsimageView"
-                android:layout_width="80dp"
-                android:layout_height="80dp"
-                android:layout_margin="7dp"
-                android:layout_gravity="center_horizontal"
-                android:background="@drawable/image_background"
-                android:src="@mipmap/ic_launcher"
-                android:contentDescription="@string/image_icon"/>
 
             <TextView
                 android:id="@+id/detailstitles"

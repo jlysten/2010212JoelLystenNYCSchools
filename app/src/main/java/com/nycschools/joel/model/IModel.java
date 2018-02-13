@@ -15,14 +15,14 @@ import java.util.List;
 
 public interface IModel {
 
-    void callAPI1(onResponse listener);
+        void callAPI1(onResponse listener);
+        void callAPI(onResponse listener);
 
     interface onResponse {
-       // void onSuccess(List<String>listofschools, List<String>dbn);
+        //void onSuccess(List<String>listofschools, List<String>dbn);
         void schoolList(ArrayList<Data>list);
-        void satScore(ArrayList<SchoolSatScore>score);
+        void satScore(ArrayList<SchoolSatScore> score);
         void onFailure(String message);
     }
-    void callAPI(onResponse listener);
 }
 

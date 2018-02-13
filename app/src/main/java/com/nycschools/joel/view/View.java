@@ -7,9 +7,12 @@ import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.widget.LinearLayout;
 
 import com.nycschools.joel.R;
+import com.nycschools.joel.adapter.MyRecyclerViewAdapter;
+import com.nycschools.joel.data.Data;
 import com.nycschools.joel.data.SchoolSatScore;
 import com.nycschools.joel.model.MyModel;
 import com.nycschools.joel.presenter.IPresenter;
@@ -18,12 +21,12 @@ import com.nycschools.joel.presenter.MyPresenter;
 import java.util.ArrayList;
 import java.util.List;
 
-public class View extends AppCompatActivity implements IView{
+public class View extends AppCompatActivity implements IView,MyRecyclerViewAdapter.ClickOnItemListener{
 
     private IPresenter iPresenter;
     private Toolbar mTopToolbar;
     private LinearLayout linearLayout;
-
+    ArrayList<Data> mlist = new ArrayList<>();
     private ListFragment listFragment = new ListFragment();
 
     @Override
@@ -38,7 +41,6 @@ public class View extends AppCompatActivity implements IView{
         iPresenter.doNetworkCall();
         iPresenter.doNetworkCall1();
         iPresenter.loadSplash();
-
     }
 
 
@@ -50,17 +52,21 @@ public class View extends AppCompatActivity implements IView{
     }
 
     @Override
-    public void navigatetoListFragment(List<String> list, List<String> urls) {
-
-    }
-
-    @Override
     public void showError(String message) {
     }
 
     @Override
-    public void scoreDetails(ArrayList<SchoolSatScore> score) {
-
+    public void responseReceived(ArrayList<Data> list) {
+        iPresenter.loadListFragment(list);
     }
 
+    @Override
+    public void secondResponseReceived(ArrayList<SchoolSatScore> score) {
+        iPresenter.combineData(score);
+    }
+
+    @Override
+    public void onClickOnItemListener(String name, String details) {
+        iPresenter.loadDetailFragment(name, details);
+    }
 }

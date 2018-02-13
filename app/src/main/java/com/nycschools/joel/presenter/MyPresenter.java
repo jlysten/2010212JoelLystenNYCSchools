@@ -3,26 +3,25 @@ package com.nycschools.joel.presenter;
 import android.content.Context;
 import android.os.Bundle;
 import android.os.Handler;
-import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
-import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 
 import com.nycschools.joel.R;
-import com.nycschools.joel.adapter.MyRecyclerViewAdapter;
 import com.nycschools.joel.data.Data;
 import com.nycschools.joel.data.SchoolSatScore;
 import com.nycschools.joel.model.IModel;
 import com.nycschools.joel.model.MyModel;
 import com.nycschools.joel.view.IView;
 import com.nycschools.joel.view.ListFragment;
+import com.nycschools.joel.view.ScoreFragment;
 import com.nycschools.joel.view.SplashFragment;
 import com.nycschools.joel.view.View;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
-import java.util.List;
+
+import javax.inject.Inject;
+
+import dagger.Provides;
 
 /**
  * Created by Joel on 2/12/2018.
@@ -34,12 +33,11 @@ public class MyPresenter implements IPresenter,IModel.onResponse{
     private IModel iModel;
     private Context c;
     private Toolbar toolbar;
+    @Inject ArrayList<Data> list;
     private SplashFragment splashFragment;
     private ListFragment listFragment;
+    private ScoreFragment scoreFragment;
     private FragmentManager fragmentManager;
-    //private List<String> schoolNames = new ArrayList<>();
-  //  private List<String> schoolDbn = new ArrayList<>();
-    private ArrayList<Data> mlist;
 
     public MyPresenter(IView iview, MyModel myModel, Toolbar mTopToolbar, Context context) {
             this.iView = iview;
@@ -51,6 +49,11 @@ public class MyPresenter implements IPresenter,IModel.onResponse{
     @Override
     public void doNetworkCall() {
         iModel.callAPI(this);
+    }
+
+    @Override
+    public void doNetworkCall1() {
+        iModel.callAPI1(this);
     }
 
     @Override
@@ -76,7 +79,6 @@ public class MyPresenter implements IPresenter,IModel.onResponse{
         listFragment = new ListFragment();
         Bundle bundle = new Bundle();
         bundle.putParcelableArrayList("list", list);
-        Log.e("Bundle","Check:  " +mlist);
         listFragment.setArguments(bundle);
         new Handler().postDelayed(new Runnable() {
             @Override
@@ -94,23 +96,36 @@ public class MyPresenter implements IPresenter,IModel.onResponse{
     }
 
     @Override
-    public void loadDetailFragment(String title, String description, String image) {
+    public void loadDetailFragment(String name, String details) {
+        scoreFragment = new ScoreFragment();
+        Bundle bundle = new Bundle();
+        bundle.putString("schoolname",name);
+        bundle.putString("dbn",details);
+        scoreFragment.setArguments(bundle);
+        ((View) c).setSupportActionBar(toolbar);
+        ((View) c).getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        ((View) c).getSupportActionBar().setDisplayShowHomeEnabled(true);
+        ((View) c).getSupportActionBar().show();
+        fragmentManager = ((View) c).getSupportFragmentManager();
+        fragmentManager.beginTransaction()
+                .replace(R.id.fragmentContainer, scoreFragment, "sc")
+                .commit();
 
     }
 
     @Override
-    public void doNetworkCall1() {
-        iModel.callAPI1(this);
+    public void combineData(ArrayList<SchoolSatScore> score) {
+
     }
 
     @Override
     public void schoolList(ArrayList<Data> list) {
-        loadListFragment(list);
+        iView.responseReceived(list);
     }
 
     @Override
     public void satScore(ArrayList<SchoolSatScore> score) {
-        iView.scoreDetails(score);
+        iView.secondResponseReceived(score);
     }
 
     @Override

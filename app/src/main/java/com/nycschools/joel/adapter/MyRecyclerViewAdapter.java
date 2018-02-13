@@ -11,6 +11,7 @@ import android.widget.Toast;
 
 import com.nycschools.joel.R;
 import com.nycschools.joel.data.Data;
+import com.nycschools.joel.data.SchoolSatScore;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -21,22 +22,31 @@ import java.util.List;
 
 public class MyRecyclerViewAdapter extends RecyclerView.Adapter<MyRecyclerViewAdapter.MyViewHolder>{
     private final List<Data> list;
+    private final List<SchoolSatScore> satScores;
     private final Context context;
+    private ClickOnItemListener listener;
+    private String schoolName,dbn;
 
-    public MyRecyclerViewAdapter(List<Data> list, FragmentActivity activity) {
+    public interface ClickOnItemListener {
+        void onClickOnItemListener(String name, String details);
+    }
+
+    public MyRecyclerViewAdapter(List<Data> list, List<SchoolSatScore> satScores, Context context) {
         this.list = list;
-        this.context = activity;
+        this.satScores = satScores;
+        listener = (ClickOnItemListener) context;
+        this.context = context;
     }
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
         private final TextView text;
-        MyViewHolder(android.view.View view) {
+        MyViewHolder(View view) {
             super(view);
             text = view.findViewById(R.id.titles);
-            view.setOnClickListener(new android.view.View.OnClickListener() {
+            view.setOnClickListener(new View.OnClickListener() {
                 @Override
-                public void onClick(android.view.View v) {
-
+                public void onClick(View v) {
+                    listener.onClickOnItemListener(schoolName,dbn);
                 }
             });
         }
@@ -50,8 +60,9 @@ public class MyRecyclerViewAdapter extends RecyclerView.Adapter<MyRecyclerViewAd
 
     @Override
     public void onBindViewHolder( MyViewHolder holder, final int position) {
-
-        holder.text.setText(list.get(position).getSchoolName());
+        schoolName = list.get(position).getSchoolName();
+        dbn = list.get(position).getDbn();
+        holder.text.setText(schoolName);
     }
 
     @Override

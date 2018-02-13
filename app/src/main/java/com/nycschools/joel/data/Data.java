@@ -40,8 +40,7 @@ public class Data implements Parcelable{
         parcel.writeString(school_name);
     }
 
-    public static final Parcelable.Creator<Data> CREATOR
-            = new Parcelable.Creator<Data>() {
+    public static final Parcelable.Creator<Data> CREATOR = new Parcelable.Creator<Data>() {
         public Data createFromParcel(Parcel in) {
             return new Data(in);
         }
