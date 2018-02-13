@@ -1,7 +1,7 @@
-package com.nycschools.joel.presenter;
+package com.nycschools.joel.ui.main;
 
-import com.nycschools.joel.data.Data;
-import com.nycschools.joel.data.SchoolSatScore;
+import com.nycschools.joel.data.network.Data;
+import com.nycschools.joel.data.db.model.SchoolSatScore;
 
 import java.util.ArrayList;
 
@@ -19,5 +19,7 @@ public interface IPresenter {
 
     void combineData(ArrayList<SchoolSatScore> score);
 
-    void loadDetailFragment(String name, String details);
+    //void loadDetailFragment(String name, String details);
+
+    void loadDetailFragment(SchoolSatScore schoolSatScore);
 }

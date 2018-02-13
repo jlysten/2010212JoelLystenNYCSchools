@@ -1,4 +1,4 @@
-package com.nycschools.joel.view;
+package com.nycschools.joel.ui.splash;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;

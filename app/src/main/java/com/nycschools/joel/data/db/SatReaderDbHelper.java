@@ -1,10 +1,10 @@
-package com.nycschools.joel.util;
+package com.nycschools.joel.data.db;
 
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
-import com.nycschools.joel.data.SatScoresContract.SatEntry;
+import com.nycschools.joel.data.db.model.SatScoresContract.SatEntry;
 
 public class SatReaderDbHelper extends SQLiteOpenHelper {
 

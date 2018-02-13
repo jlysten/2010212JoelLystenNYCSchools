@@ -1,15 +1,11 @@
-package com.nycschools.joel.model;
+package com.nycschools.joel.data.network.model;
 
-import android.util.Log;
+import com.nycschools.joel.data.db.model.SchoolSatScore;
+import com.nycschools.joel.data.network.ApiInterface;
+import com.nycschools.joel.data.network.RetrofitClient;
+import com.nycschools.joel.data.network.Data;
 
-import com.nycschools.joel.data.Data;
-import com.nycschools.joel.data.SchoolSatScore;
-import com.nycschools.joel.network.ApiInterface;
-import com.nycschools.joel.network.RetrofitClient;
-
-import java.lang.reflect.Array;
 import java.util.ArrayList;
-import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -19,7 +15,7 @@ import retrofit2.Callback;
  * Created by Joel on 2/12/2018.
  */
 
-public class MyModel implements IModel {
+public class ModelImpl implements IModel {
     private final ApiInterface apiClient = RetrofitClient.getRetrofit().create(ApiInterface.class);
 
     @Override

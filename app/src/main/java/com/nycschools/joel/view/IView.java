@@ -1,7 +1,7 @@
 package com.nycschools.joel.view;
 
-import com.nycschools.joel.data.Data;
-import com.nycschools.joel.data.SchoolSatScore;
+import com.nycschools.joel.data.network.Data;
+import com.nycschools.joel.data.db.model.SchoolSatScore;
 
 import java.util.ArrayList;
 import java.util.List;

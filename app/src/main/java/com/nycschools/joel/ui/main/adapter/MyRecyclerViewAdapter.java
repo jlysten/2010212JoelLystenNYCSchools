@@ -1,19 +1,14 @@
-package com.nycschools.joel.adapter;
+package com.nycschools.joel.ui.main.adapter;
 
 import android.content.Context;
-import android.support.v4.app.FragmentActivity;
 import android.support.v7.widget.RecyclerView;
 import android.view.*;
 import android.view.View;
-import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.nycschools.joel.R;
-import com.nycschools.joel.data.Data;
-import com.nycschools.joel.data.SchoolSatScore;
+import com.nycschools.joel.data.network.Data;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -22,7 +17,6 @@ import java.util.List;
 
 public class MyRecyclerViewAdapter extends RecyclerView.Adapter<MyRecyclerViewAdapter.MyViewHolder>{
     private final List<Data> list;
-    private final List<SchoolSatScore> satScores;
     private final Context context;
     private ClickOnItemListener listener;
     private String schoolName,dbn;
@@ -31,9 +25,8 @@ public class MyRecyclerViewAdapter extends RecyclerView.Adapter<MyRecyclerViewAd
         void onClickOnItemListener(String name, String details);
     }
 
-    public MyRecyclerViewAdapter(List<Data> list, List<SchoolSatScore> satScores, Context context) {
+    public MyRecyclerViewAdapter(List<Data> list, Context context) {
         this.list = list;
-        this.satScores = satScores;
         listener = (ClickOnItemListener) context;
         this.context = context;
     }

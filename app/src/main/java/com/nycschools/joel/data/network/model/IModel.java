@@ -1,13 +1,9 @@
-package com.nycschools.joel.model;
+package com.nycschools.joel.data.network.model;
 
-import com.nycschools.joel.data.Data;
-import com.nycschools.joel.data.SchoolSatScore;
-import com.nycschools.joel.presenter.MyPresenter;
+import com.nycschools.joel.data.network.Data;
+import com.nycschools.joel.data.db.model.SchoolSatScore;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
 
 /**
  * Created by Joel on 2/12/2018.

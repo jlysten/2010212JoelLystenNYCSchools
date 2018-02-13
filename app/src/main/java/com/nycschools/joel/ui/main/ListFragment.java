@@ -1,4 +1,4 @@
-package com.nycschools.joel.view;
+package com.nycschools.joel.ui.main;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -9,9 +9,8 @@ import android.view.*;
 import android.view.View;
 
 import com.nycschools.joel.R;
-import com.nycschools.joel.adapter.MyRecyclerViewAdapter;
-import com.nycschools.joel.data.Data;
-import com.nycschools.joel.data.SchoolSatScore;
+import com.nycschools.joel.ui.main.adapter.MyRecyclerViewAdapter;
+import com.nycschools.joel.data.network.Data;
 
 import java.util.List;
 
@@ -22,7 +21,6 @@ import java.util.List;
 public class ListFragment extends Fragment {
 
     private List<Data> list;
-    private List<SchoolSatScore> satScores;
     public RecyclerView recyclerView;
     private MyRecyclerViewAdapter adapter;
 
@@ -51,7 +49,7 @@ public class ListFragment extends Fragment {
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        adapter = new MyRecyclerViewAdapter(list,satScores,getActivity());
+        adapter = new MyRecyclerViewAdapter(list,getActivity());
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         recyclerView.setAdapter(adapter);
     }

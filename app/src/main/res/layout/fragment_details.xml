@@ -24,23 +24,13 @@
 
 
             <TextView
-                android:id="@+id/detailstitles"
+                android:id="@+id/schoolname"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
                 android:textColor="#000000"
                 android:textStyle="bold" />
 
-            <TextView
-                android:id="@+id/detailsdescription"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
-                android:textColor="#000000"
-                android:textStyle="italic"
-                android:paddingRight="10dp"
-                android:paddingLeft="10dp"
-                android:paddingBottom="10dp"/>
         </LinearLayout>
     </android.support.v7.widget.CardView>
 
